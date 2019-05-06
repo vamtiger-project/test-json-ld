@@ -2,7 +2,7 @@
     "name": "test-json-ld",
     "version": "0.0.2-0",
     "description": "",
-    "main": "build",
+    "main": "build/test-json-ld",
     "scripts": {
         "test": "npm run clean && npm run build && npm run bundle-node-test && npm run bundle-browser-test && npm run mocha && npm run bundle-source",
         "mocha": "mocha build/test/node --recursive",
