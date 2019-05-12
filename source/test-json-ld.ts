@@ -1,10 +1,24 @@
+import {
+    ScriptType,
+    url
+} from './types';
 import jsonLd from './json-ld';
-const { stringify } = JSON;
-const { head } = document;
-const jsonLdScript = document.createElement('script');
+import json from './json';
+import loadScript from './load-script';
 
-jsonLdScript.type = 'application/ld+json';
-jsonLdScript.dataset.jsonLd = 'https://unpkg.com/test-json-ld';
-jsonLdScript.innerHTML = stringify(jsonLd);
+const jsonLdParams = jsonLd.map(data => ({
+    url,
+    type: ScriptType.jsonLd,
+    data
+}));
+const jsonParams = {
+    url,
+    type: ScriptType.json,
+    data: json
+};
+const scriptParams = [
+    ...jsonLdParams,
+    jsonParams
+]
 
-head.appendChild(jsonLdScript);
+scriptParams.forEach(loadScript);
